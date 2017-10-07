@@ -43,7 +43,7 @@ OBJ = ft_memcmp.o ft_strclr.o ft_strnequ.o ft_atoi.o ft_memcpy.o ft_strcmp.o \
 	  ft_memccpy.o ft_strcat.o ft_strncmp.o ft_memchr.o ft_strchr.o \
 	  ft_strncpy.o
 
-HEADER = includes/libft.h
+HEADER = includes
 
 all: $(NAME)
 

@@ -34,7 +34,5 @@ void	ft_putnbr_fd(int nb, int fd)
 		}
 		if (nb < 10 && nb >= 0)
 			ft_putchar_fd(nb + 48, fd);
-		else
-			;
 	}
 }

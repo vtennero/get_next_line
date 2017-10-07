@@ -69,9 +69,7 @@ char			*ft_strtrim(char const *s)
 {
 	int			a;
 	int			b;
-	int			i;
 
-	i = 0;
 	if (s)
 	{
 		a = ft_strtrimc1(s);
