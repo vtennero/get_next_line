@@ -1,6 +1,6 @@
-Salut
+bonjour les poto
 
-Commment ca va
+Comment ca va
 
 ca va bien et toi
 

@@ -1,6 +1,6 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUF_SIZE 32
+# define BUF_SIZE 5
 
 #include <unistd.h>
 //#include "libft/libft.a"

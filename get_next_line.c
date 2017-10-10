@@ -47,17 +47,32 @@ int	get_next_line(int const fd, char** line)
 {
 	int	ret;
 	char	buf[BUF_SIZE +1];
-	//int	i;
+	int	i;
 	int	k;
+	char	*str;
 
-	//i = 0;
+	i = 0;
 	k = 0;
+	str = malloc(250);
 	while ((ret = read(fd, buf, BUF_SIZE)))
 	{
+			while (i < ret)
+			{
+				if (buf[i] == '\n')
+				{
+					k = BUF_SIZE - i;
+					printf("%d\n", k);
+					//stock = malloc()
+					break;
+				}
+				//printf("%d : %c\n", i + 1, buf[i]);
+				str[i] = buf[i];
+				i++;
+			}
 		buf[ret] = '\0';
-		k = ft_check(buf);
-		ft_putstr("line :");
-		ft_putstr(ft_strndup(buf, k));
+		//k = ft_check(buf);
+		//ft_putstr("line :");
+		//ft_putstr(ft_strndup(buf, k));
 		//printf("nombre de caracteres lus:\n%d\n", ret);
 		//printf("caracteres lus:\n%s\n", buf);
 		//ft_putstr("ret: ");
@@ -65,6 +80,10 @@ int	get_next_line(int const fd, char** line)
 		//ft_putstr("buf :");
 		//ft_putstr(buf);
 	}
+	str[i+1] = '\0';
+	ft_putstr(str);
+	ft_putstr("**end**");
+	line = NULL;
 	return(**line);
 }
 //boucle while no \0
@@ -98,7 +117,7 @@ int	main(int ac, char **av)
 	if(ac)
 	{
 		fd = open(*av, O_RDONLY);
-		printf("%d", get_next_line(fd, *line));
+		get_next_line(fd, *line);
 	}
-	return(fd);
+	return(1);
 }
