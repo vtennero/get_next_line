@@ -12,9 +12,13 @@ int	ft_check(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\n')
-		i++;
-	return (i);
+	while (str[i] != '\0')
+		{
+			if (str[i] == '\n')
+				return (i);
+			i++;
+		}
+	return (-1);
 }
 
 //a ajouter dans la libft
@@ -43,48 +47,81 @@ char	*ft_strndup(const char *s1, int n)
 }
 
 
-int	get_next_line(int const fd, char** line)
+int	get_next_line(int const fd, char **line)
 {
 	int	ret;
 	char	buf[BUF_SIZE +1];
-	int	i;
-	int	k;
 	char	*str;
+	int		i;
+	int		c;
+	int		j;
+	int		total;
+	//static char	*stock;
 
-	i = 0;
-	k = 0;
-	str = malloc(250);
-	while ((ret = read(fd, buf, BUF_SIZE)))
+	j = 0;
+	i = 1;
+	c = 0;
+	total = 0;
+	str = NULL;
+	if (!line)
+		return (-1);
+	while ((ret = read(fd, buf, BUF_SIZE)) != 0)
 	{
-			while (i < ret)
+		if (i == 1)
+		{
+			if (ft_check(buf) == -1)
 			{
-				if (buf[i] == '\n')
-				{
-					k = BUF_SIZE - i;
-					printf("%d\n", k);
-					//stock = malloc()
-					break;
-				}
-				//printf("%d : %c\n", i + 1, buf[i]);
-				str[i] = buf[i];
-				i++;
+				//ft_putstr("pas de backslash n \n");
+				str = ft_strdup(buf);
 			}
-		buf[ret] = '\0';
-		//k = ft_check(buf);
-		//ft_putstr("line :");
-		//ft_putstr(ft_strndup(buf, k));
-		//printf("nombre de caracteres lus:\n%d\n", ret);
-		//printf("caracteres lus:\n%s\n", buf);
-		//ft_putstr("ret: ");
-		//ft_putnbr(ret);
-		//ft_putstr("buf :");
-		//ft_putstr(buf);
+			else
+			{
+				str = ft_strndup(buf, ft_check(buf));
+				c = 1;
+				//stock = ft_strchr(buf, '\n');
+			}
+		}
+		else
+		{
+			if (ft_check(buf) == -1)
+				{
+				//ft_putstr("pas de backslash n \n");
+
+				str = ft_strjoin(str, ft_strdup(buf));
+
+				}
+			else
+			{
+				str = ft_strjoin(str, ft_strndup(buf, ft_check(buf)));
+				c = 1;
+				//stock = ft_strchr(buf, '\n');
+			}
+		}
+		//stock = ft_strchr(buf, '\n');
+		if (c == 1)
+		{
+			*line = str;
+			//ft_putstr("stock: ");
+			//if (stock)
+			//ft_putstr(stock);
+			return (0);
+		}
+		i++;
+		total = total + ret;
 	}
-	str[i+1] = '\0';
-	ft_putstr(str);
-	ft_putstr("**end**");
-	line = NULL;
-	return(**line);
+	if (ret < BUF_SIZE && i > 1)
+		{
+		j = total;
+	while (j < i * BUF_SIZE)
+				{
+					str[j] = '\0';
+					j++;
+				}
+		}
+	*line = str;
+	//ft_putstr("stock: ");
+	//ft_putstr(stock);
+	return(1);
 }
 //boucle while no \0
 //boucle while no \n
@@ -108,16 +145,34 @@ int	get_next_line(int const fd, char** line)
 
 //utilite de strrchr: renvoyer l'adresse apres le \n ?
 
-int	main(int ac, char **av)
+int	main()
 {
 	int	fd;
-	char**	line[250];
+	char	**line;
 
 	av++;
+	line = malloc(25000);
+	ft_bzero(line, 25000);
 	if(ac)
 	{
 		fd = open(*av, O_RDONLY);
-		get_next_line(fd, *line);
+		get_next_line(fd, line);
+		//ft_putstr("\n***line : \n");
+		ft_putstr(*line);
+		//get_next_line(fd, line);
+		//ft_putstr("\n***line : \n");
+		//ft_putstr(*line);
 	}
 	return(1);
+
+/*
+	char    *line;
+    int     r;
+    int     i;
+
+    line = NULL;
+    i = 0;
+    while ((r = get_next_line(0, &line)) > 0)
+        printf("%i: %s\n", ++i, line);
+    return (r);*/
 }

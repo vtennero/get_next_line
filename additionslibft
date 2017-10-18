@@ -1,0 +1,5 @@
+recoder:
+ft_strclr: version pointeurs
+
+ajouter:
+ft_strndup
