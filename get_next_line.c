@@ -37,131 +37,87 @@ char	*ft_strndup(const char *s1, int n)
 		t[i] = s1[i];
 		i++;
 	}
-	/*ft_putstr("yo");
-	while (t)
-	{
-		t[i] = '\0';
-		i++;
-	}*/
 	return (t);
 }
 
+int	ft_parse(char **line, char *stock)
+{
+	int	i;
+	char	*str;
+
+	i = 0;
+	str = *line;
+	if (ft_strchr(*line, '\n') == NULL)
+	{
+		*line = ft_strjoin(stock, *line);
+		return (0);
+	}
+	else
+	{
+		while ((str[i] != '\n') && (str[i] != '\0'))
+			i++;
+		ft_memset(stock, '\0', i);
+		stock = ft_strchr(*line, '\n');
+		ft_putstr(stock);
+		*line = ft_strjoin(stock, *line);
+		*line = ft_strndup(str, i);
+	}
+	ft_putstr("///test\\\\\\\n");
+	ft_putstr(*line);
+	ft_putchar(10);
+	return (1);
+}
 
 int	get_next_line(int const fd, char **line)
 {
 	int	ret;
 	char	buf[BUF_SIZE +1];
-	char	*str;
-	int		i;
-	int		c;
-	int		j;
-	int		total;
-	//static char	*stock;
+	char	*tmp;
+	static char	*stock;
 
-	j = 0;
-	i = 1;
-	c = 0;
-	total = 0;
-	str = NULL;
+	if (!stock)
+		stock = malloc(sizeof(char) * BUF_SIZE + 1);
 	if (!line)
 		return (-1);
+	*line = 0;
 	while ((ret = read(fd, buf, BUF_SIZE)) != 0)
 	{
-		if (i == 1)
-		{
-			if (ft_check(buf) == -1)
-			{
-				//ft_putstr("pas de backslash n \n");
-				str = ft_strdup(buf);
-			}
-			else
-			{
-				str = ft_strndup(buf, ft_check(buf));
-				c = 1;
-				//stock = ft_strchr(buf, '\n');
-			}
-		}
+		tmp = *line;
+		buf[ret] = '\0';
+		if (tmp)
+			*line = ft_strjoin(*line, buf);
 		else
-		{
-			if (ft_check(buf) == -1)
-				{
-				//ft_putstr("pas de backslash n \n");
-
-				str = ft_strjoin(str, ft_strdup(buf));
-
-				}
-			else
-			{
-				str = ft_strjoin(str, ft_strndup(buf, ft_check(buf)));
-				c = 1;
-				//stock = ft_strchr(buf, '\n');
-			}
-		}
-		//stock = ft_strchr(buf, '\n');
-		if (c == 1)
-		{
-			*line = str;
-			//ft_putstr("stock: ");
-			//if (stock)
-			//ft_putstr(stock);
-			return (0);
-		}
-		i++;
-		total = total + ret;
+			*line = ft_strdup(buf);
+		if (ft_parse(line, stock) == 1)
+			return (1);
+		free(tmp);
 	}
-	if (ret < BUF_SIZE && i > 1)
-		{
-		j = total;
-	while (j < i * BUF_SIZE)
-				{
-					str[j] = '\0';
-					j++;
-				}
-		}
-	*line = str;
-	//ft_putstr("stock: ");
-	//ft_putstr(stock);
-	return(1);
+	return (0);
 }
-//boucle while no \0
-//boucle while no \n
-//stocker le surplus apres le \n
-//variable statique pour stocker le contenu des phases de read
-//malloc sur line ?
-//strjoin pour concatener les strings dans line
-//return line
 
-//ou bien: tout lire et tout enregistrer, faire un strsplit pour les \n
-
-//lecture du fd qq soit le buffer, mettons : "salut les gars\nca "
-//detection du \n
-//copie du string lu (buf) up to n
-//stockage de: ca via strsub
-//line = salut les gars\0
-//renvoi de 1
-//detection du \n
-//copie up to \0
-//return 0
-
-//utilite de strrchr: renvoyer l'adresse apres le \n ?
-
-int	main()
+int	main(int ac, char **av)
 {
 	int	fd;
 	char	**line;
+	int	i;
 
+	i = 1;
 	av++;
 	line = malloc(25000);
 	ft_bzero(line, 25000);
 	if(ac)
 	{
 		fd = open(*av, O_RDONLY);
+		while (line)
+		{
 		get_next_line(fd, line);
-		//ft_putstr("\n***line : \n");
+		ft_putstr("***line ");
+		ft_putnbr(i);
+		ft_putstr("***\n");
 		ft_putstr(*line);
-		//get_next_line(fd, line);
-		//ft_putstr("\n***line : \n");
-		//ft_putstr(*line);
+		ft_putchar(10);
+		i++;
+	}
 	}
 	return(1);
 
