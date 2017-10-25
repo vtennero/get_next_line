@@ -7,20 +7,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int	ft_check(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		{
-			if (str[i] == '\n')
-				return (i);
-			i++;
-		}
-	return (-1);
-}
-
 //a ajouter dans la libft
 
 char	*ft_strndup(const char *s1, int n)
@@ -40,87 +26,81 @@ char	*ft_strndup(const char *s1, int n)
 	return (t);
 }
 
-int	ft_parse(char **line, char *stock)
+int	ft_parse(char **line, char **hello, int k, int l)
 {
 	int	i;
 	char	*str;
 
 	i = 0;
 	str = *line;
+	if (k > 1)
+	{
+	*line = ft_strjoin(*hello, str);
+	}
 	if (ft_strchr(*line, '\n') == NULL)
 	{
-		*line = ft_strjoin(stock, *line);
 		return (0);
 	}
 	else
 	{
 		while ((str[i] != '\n') && (str[i] != '\0'))
 			i++;
-		ft_memset(stock, '\0', i);
-		stock = ft_strchr(*line, '\n');
-		ft_putstr(stock);
-		*line = ft_strjoin(stock, *line);
-		*line = ft_strndup(str, i);
+		*hello = ft_strsub(*line, i, l - i + 1);
+		*line = ft_strndup(*line, i);
 	}
-	ft_putstr("///test\\\\\\\n");
-	ft_putstr(*line);
-	ft_putchar(10);
 	return (1);
 }
 
 int	get_next_line(int const fd, char **line)
 {
 	int	ret;
-	char	buf[BUF_SIZE +1];
+	char	buf[BUFF_SIZE +1];
 	char	*tmp;
-	static char	*stock;
+	static char	*hello = NULL;
+	static int	k;
+	static int	l;
 
-	if (!stock)
-		stock = malloc(sizeof(char) * BUF_SIZE + 1);
-	if (!line)
+	k++;
+	if (!line || BUFF_SIZE < 0 || fd < 0)
 		return (-1);
-	*line = 0;
-	while ((ret = read(fd, buf, BUF_SIZE)) != 0)
+	*line = ft_strnew(1);
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
+		l = l + ret;
 		tmp = *line;
 		buf[ret] = '\0';
 		if (tmp)
 			*line = ft_strjoin(*line, buf);
 		else
 			*line = ft_strdup(buf);
-		if (ft_parse(line, stock) == 1)
+		if (ft_parse(line, &hello, k, l) == 1)
 			return (1);
 		free(tmp);
 	}
+	if ((ret == 0))
+		return (1);
+	if (ret < 0)
+		return (-1);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	int	fd;
-	char	**line;
-	int	i;
+	int		fd;
+	char	*line;
 
-	i = 1;
-	av++;
-	line = malloc(25000);
-	ft_bzero(line, 25000);
-	if(ac)
+	if (ac)
 	{
-		fd = open(*av, O_RDONLY);
-		while (line)
-		{
-		get_next_line(fd, line);
-		ft_putstr("***line ");
-		ft_putnbr(i);
-		ft_putstr("***\n");
-		ft_putstr(*line);
+	fd = open(av[1], O_RDONLY);
+	while ((get_next_line(fd, &line) == 1) && (ft_strlen(line) > 0))
+	{			
+		ft_putstr(line);
 		ft_putchar(10);
-		i++;
 	}
+	close(fd);
 	}
-	return(1);
-
+return (0);
+}
 /*
 	char    *line;
     int     r;
@@ -131,4 +111,3 @@ int	main(int ac, char **av)
     while ((r = get_next_line(0, &line)) > 0)
         printf("%i: %s\n", ++i, line);
     return (r);*/
-}

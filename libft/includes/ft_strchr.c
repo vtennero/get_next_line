@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	int		n;
 	char	*cpy;
 
+	if (!s)
+		return(NULL);
 	n = 0;
 	cpy = (char*)s;
 	while (cpy[n] != '\0')
