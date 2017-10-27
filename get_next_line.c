@@ -9,6 +9,22 @@
 
 //a ajouter dans la libft
 
+int		ft_eol(char *str)
+{
+	int	i;
+
+	i = 0;
+			while (str[i] != '\n' && str[i])
+				i++;
+			if (str[i] == '\n')
+			{
+				str[i] = '\0';
+				return (i);
+			}
+			else
+				return (-1);
+}
+
 char	*ft_strndup(const char *s1, int n)
 {
 	char	*t;
@@ -23,19 +39,19 @@ char	*ft_strndup(const char *s1, int n)
 		t[i] = s1[i];
 		i++;
 	}
+	t[n] = '\0';
 	return (t);
 }
 
-int	ft_parse(char **line, char **hello, int k, int l)
+int	ft_parse(char **line, char **hello, int l)
 {
 	int	i;
-	char	*str;
 
 	i = 0;
-	str = *line;
-	if (k > 1)
+	if (*hello)
 	{
-	*line = ft_strjoin(*hello, str);
+		*line = ft_strjoin(*hello, *line);
+		ft_strdel(hello);
 	}
 	if (ft_strchr(*line, '\n') == NULL)
 	{
@@ -43,9 +59,8 @@ int	ft_parse(char **line, char **hello, int k, int l)
 	}
 	else
 	{
-		while ((str[i] != '\n') && (str[i] != '\0'))
-			i++;
-		*hello = ft_strsub(*line, i, l - i + 1);
+		i = ft_eol(*line);
+		*hello = ft_strsub(*line, i + 2, l - i);
 		*line = ft_strndup(*line, i);
 	}
 	return (1);
@@ -57,10 +72,9 @@ int	get_next_line(int const fd, char **line)
 	char	buf[BUFF_SIZE +1];
 	char	*tmp;
 	static char	*hello = NULL;
-	static int	k;
 	static int	l;
 
-	k++;
+	l = 0;
 	if (!line || BUFF_SIZE < 0 || fd < 0)
 		return (-1);
 	*line = ft_strnew(1);
@@ -73,7 +87,7 @@ int	get_next_line(int const fd, char **line)
 			*line = ft_strjoin(*line, buf);
 		else
 			*line = ft_strdup(buf);
-		if (ft_parse(line, &hello, k, l) == 1)
+		if (ft_parse(line, &hello, l) == 1)
 			return (1);
 		free(tmp);
 	}
