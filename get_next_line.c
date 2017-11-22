@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/22 16:23:34 by vtennero          #+#    #+#             */
+/*   Updated: 2017/11/22 16:23:44 by vtennero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include "libft.h"
-#include <unistd.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -106,7 +116,7 @@ int	get_next_line(int const fd, char **line)
 			return (1);
 		free(tmp);
 	}
-	if ((ret == 0))
+	if (ret == 0)
 		return (1);
 	if (ret < 0)
 		return (-1);
