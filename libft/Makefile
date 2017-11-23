@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/11/09 17:34:18 by vtennero         ###   ########.fr        #
+#    Updated: 2017/11/23 16:44:51 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC = ft_memcmp.c ft_strclr.c ft_strnequ.c ft_atoi.c \
 	  ft_memalloc.c ft_strncat.c ft_toupper.c \
 	  ft_memccpy.c ft_strcat.c ft_strncmp.c ft_memchr.c \
 	  ft_strchr.c ft_strncpy.c ft_lstadd.c ft_lstiter.c \
-	  ft_lstnew.c ft_lstdel.c ft_lstdelone.c ft_lstmap.c
+	  ft_lstnew.c ft_lstdel.c ft_lstdelone.c ft_lstmap.c ft_strndup.c
 
 OBJ = ft_memcmp.o ft_strclr.o ft_strnequ.o ft_atoi.o ft_memcpy.o ft_strcmp.o \
 	  ft_strnew.o ft_bzero.o ft_memdel.o ft_strcpy.o ft_strnstr.o \
@@ -43,7 +43,7 @@ OBJ = ft_memcmp.o ft_strclr.o ft_strnequ.o ft_atoi.o ft_memcpy.o ft_strcmp.o \
 	  ft_strmapi.o ft_tolower.o ft_memalloc.o ft_strncat.o ft_toupper.o \
 	  ft_memccpy.o ft_strcat.o ft_strncmp.o ft_memchr.o ft_strchr.o \
 	  ft_strncpy.o ft_lstiter.o ft_lstadd.o ft_lstnew.o ft_lstdel.o \
-	  ft_lstdelone.o ft_lstmap.o
+	  ft_lstdelone.o ft_lstmap.o ft_strndup.o
 
 HEADER = /libft.h
 

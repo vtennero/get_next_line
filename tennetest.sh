@@ -5,4 +5,4 @@
 
 sed -i -e 's/BUFF_SIZE .*/BUFF_SIZE '$1'/g' get_next_line.h
 make re
-./test_gnl $2
+./test_gnl $2 | cat -e
