@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 19:19:36 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/23 20:41:39 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/11/24 17:26:23 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	get_next_line(int const fd, char **line)
 	int		ret;
 	char	*str;
 	static char	*tmp;
-	int		n;
+	int		n = -1;
 
+	*line = 0;
 	str = NULL;
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
@@ -82,15 +83,14 @@ int	get_next_line(int const fd, char **line)
 	}
 	if (ret == 0)
 	{
-
-		ft_putnbr(ret);
-		//*line = 0;
-		return (0);
+		if (*line == 0)
+			return (0);
+		return (1);
 	}
 	else
 		return (-1);
 }
-
+/*
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -106,16 +106,10 @@ int	main(int ac, char **av)
 			//ft_putnbr(return_value);
 			ft_putendl(line);
 		}
-		if ((return_value = get_next_line(fd, &line)) == 0)
-		{
-			ft_putstr("final line: ");
-		//	ft_putnbr(return_value);
-			ft_putendl(line);
-		}
 		close(fd);
 	}
 	return (0);
-}
+}*/
 /*
    char    *line;
    int     r;
