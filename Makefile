@@ -12,7 +12,8 @@
 
 NAME = test_gnl
 
-FLAGS = -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
 
 LIBFT_DIR = libft
 LIBFT_NAME = libft.a

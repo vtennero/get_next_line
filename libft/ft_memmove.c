@@ -6,13 +6,11 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 16:13:08 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/20 13:11:15 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/07/09 18:03:11 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -39,14 +37,4 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		}
 	}
 	return (s1);
-}
-
-int	main(void)
-{
-	char	a[6] = "salut";
-	char	b[6] = "salut";
-
-	printf("%s\n", ft_memmove(a+2, a, 4));
-	printf("%s\n", memmove(b+2 , b, 4));
-return (0);
 }

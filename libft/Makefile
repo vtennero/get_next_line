@@ -6,13 +6,14 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/11/23 16:44:51 by vtennero         ###   ########.fr        #
+#    Updated: 2017/11/09 17:34:18 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FLAGS = -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wno-empty-body -Wno-unused -Wextra
 
 SRC = ft_memcmp.c ft_strclr.c ft_strnequ.c ft_atoi.c \
 	  ft_memcpy.c ft_strcmp.c ft_strnew.c ft_bzero.c \
