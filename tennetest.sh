@@ -6,7 +6,7 @@
 sed -i -e 's/BUFF_SIZE .*/BUFF_SIZE '$1'/g' get_next_line.h
 make re
 #cat -e $2
-echo "\n--------"
+#echo "\n--------"
 ./test_gnl $2 | cat -e
 rm get_next_line.h.gch
 rm get_next_line.h-e

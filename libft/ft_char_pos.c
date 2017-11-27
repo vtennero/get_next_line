@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_char_pos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 16:23:18 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/23 20:41:36 by vtennero         ###   ########.fr       */
+/*   Created: 2017/11/27 15:20:12 by vtennero          #+#    #+#             */
+/*   Updated: 2017/11/27 15:23:04 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 45
+#include "libft.h"
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "libft/libft.h"
+int		ft_char_pos(char *str, char c)
+{
+	int			i;
 
-int	get_next_line(int const fd, char **line);
-
-#endif
+	i = -1;
+	while (str[i] != c)
+	{
+		++i;
+		if (str[i] == '\0')
+			return (-1);
+	}
+	return (i);
+}

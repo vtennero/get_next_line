@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 15:25:20 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/10 18:14:58 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:32:08 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void				*ft_memalloc(size_t size);
 void				*ft_bzero(void *b, size_t n);
 char				*ft_strdup(const char *s1);
 char				*ft_strndup(const char *s1, int n);
+char				*ft_strjoin_clr(char *a, char *b, int d);
+int					ft_char_pos(char *str, char c);
 void				ft_memdel(void **ap);
 void				ft_strdel(char **as);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
