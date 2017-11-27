@@ -6,7 +6,7 @@
 #    By: vtennero <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/17 15:16:05 by vtennero          #+#    #+#              #
-#    Updated: 2017/11/27 11:13:42 by vtennero         ###   ########.fr        #
+#    Updated: 2017/11/27 12:11:30 by vtennero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ LIBFT_NAME = libft.a
 
 LIBFT = $(patsubst %, $(LIBFT_DIR)/%,$(LIBFT_NAME))
 
-OBJ = get_next_line.o
+OBJ = get_next_line.o main.o
 
-SRC = get_next_line.c
+SRC = get_next_line.c main.c
 
 .PHONY: all clean fclean re
 
