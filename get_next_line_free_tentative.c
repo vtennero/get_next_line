@@ -12,19 +12,35 @@
 
 #include "get_next_line.h"
 
+static char	*ft_strndup_clr(const char *s1, int n)
+{
+	char	*t;
+	int		i;
+
+	i = 0;
+	t = (char *)malloc(sizeof(*t) * n + 1);
+	if (!t)
+		return (NULL);
+	while (i < n)
+	{
+		t[i] = s1[i];
+		i++;
+	}
+	t[n] = '\0';
+	free((char *)s1);
+	return (t);
+}
+
 static int		ft_eol_is_full(char *tmp, char **line)
 {
 	int		n;
-	char	*str;
 
-	str = *line;
 	n = -1;
 	if (tmp)
 	{
 		if ((n = ft_char_pos(tmp, '\n')) >= 0)
 		{
-			*line = ft_strndup(tmp, n);
-			free(str);
+			*line = ft_strndup_clr(tmp, n);
 			return (1);
 		}
 	}
@@ -36,6 +52,7 @@ static char		*ft_read_line(char *t, char **line, int const fd, int *ret)
 	int			n;
 	char		buf[BUFF_SIZE + 1];
 	char		*str;
+	//char 		*tmp;
 
 	str = NULL;
 	while ((*ret = read(fd, buf, BUFF_SIZE)) > 0)
@@ -44,8 +61,10 @@ static char		*ft_read_line(char *t, char **line, int const fd, int *ret)
 		str = (!str) ? ft_strjoin_clr(t, buf, 3) : ft_strjoin_clr(str, buf, 0);
 		if ((n = ft_char_pos(str, '\n')) >= 0)
 		{
-			*line = ft_strndup(str, n);
+			*line = ft_strndup_clr(str, n);
+			//tmp = t;
 			t = ft_strdup(ft_strchr(str, '\n') + 1);
+			//free(tmp);
 			return (t);
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:23:18 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/27 19:31:46 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/11/28 11:38:20 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_H
 # define BUFF_SIZE 4
 
-# include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 15:47:16 by vtennero          #+#    #+#             */
-/*   Updated: 2017/06/17 15:51:12 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/11/28 10:20:09 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int	ft_strcmp(const char *s1, const char *s2)
 	unsigned int	i;
 
 	i = 0;
+	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+		return (s2[i]);
+	if (!s2)
+		return (s1[i]);
 	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])
