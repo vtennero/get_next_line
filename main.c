@@ -6,7 +6,7 @@
 /*   By: vtennero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:02:00 by vtennero          #+#    #+#             */
-/*   Updated: 2017/11/28 13:37:14 by vtennero         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:28:02 by vtennero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ int	main(int ac, char **av)
 			//ft_putnbr(return_value);
 			ft_putendl(line);
 			i++;
+			free(line);
 		}
 			//ft_putnbr(return_value);
 		close(fd);
-	//	while (1)
-	//		;
+		free(line);
+		//while (1)
+		//	;
 	}
 	return (0);
 }
