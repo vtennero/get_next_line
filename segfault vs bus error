@@ -1,5 +1,0 @@
-
-
-A segfault is accessing memory that you're not allowed to access. It's read-only, you don't have permission, etc...
-
-A bus error is trying to access memory that can't possibly be there. You've used an address that's meaningless to the system, or the wrong kind of address for that operation.
