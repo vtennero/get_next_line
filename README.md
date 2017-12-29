@@ -1,6 +1,6 @@
 # get_next_line
 
-The goal of the project is to recode the printf function (man 3 printf).
+The goal of the project is to to write a function that reads a line ending with a newline character from a file descriptor, thus allowing to save/use a given text file line by line if called in a loop.
 
 ## Installing
 
@@ -11,8 +11,6 @@ make
 ```
 
 ## Linux Support
-
-To use it on Linux:
 
 In the Makefile, simply replace :
 
@@ -31,6 +29,8 @@ With :
 The easiest way is to add a main function in get_next_line.c that calls get_next_line, for example like this:
 
 ```
+#include <stdio.h>
+
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -44,7 +44,6 @@ int	main(int ac, char **av)
 		while ((return_value = get_next_line(fd, line)) == 1)
 		{
 			printf("%s\n", *line);
-			//printf("%i\n%s\n", return_value, *line);
 			free(*line);
 		}
 		free(*line);
@@ -74,11 +73,11 @@ For each test, the program also checks memory leaks using the native leaks tool 
 
 ## Additional Resources
 
-Instructions : [Subject](http://bit.ly/2le7CAs)
+Instructions : [Subject](http://bit.ly/2Dt5LOS)
 
 My test program : [TN_test_GNL](https://github.com/vtennero/TN_test_GNL)
 
-Other test program (not made by me) : [42FC](https://github.com/jgigault/42FileChecker)
+Another test program (not made by me) : [42FC](https://github.com/jgigault/42FileChecker)
 
 ## Author
 
