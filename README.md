@@ -10,7 +10,7 @@ Clone the repository and:
 make
 ```
 
-## Linux Support
+### Linux Support
 
 In the Makefile, simply replace :
 
