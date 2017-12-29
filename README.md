@@ -1,6 +1,6 @@
 # get_next_line
 
-The goal of the project is to to write a function that reads a line ending with a newline character from a file descriptor, thus allowing to save/use a given text file line by line if called in a loop.
+get_next_line is a function that reads a line ending with a newline character from a file descriptor, thus allowing to save/use a given text file line by line if called in a loop.
 
 ## Installing
 
