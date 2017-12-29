@@ -4,7 +4,21 @@ get_next_line is a function that reads a line ending with a newline character fr
 
 ## Installing & running the tests
 
-The easiest way is to add a main.c that calls get_next_line, for example like this:
+### TN_test_GNL
+
+I have created my own test program : [TN_test_GNL](https://github.com/vtennero/TN_test_GNL)
+
+It tests 15 relevant examples of text, with 5 different buff sizes (1, 2, 5, 1,000 and 1,000,000), from files and standard input. For each test, the program also checks memory leaks using the native leaks tool from Mac and valgrind (both only supported on the Macs at 42).
+
+To install it, simply put the content of the TN_test_GNL folder in your get_next_line folder, then do :
+
+```
+sh TN_test_GNL.sh
+```
+
+### Other method
+
+Another method is to add a main.c that calls get_next_line, for example like this:
 
 ```
 #include <stdio.h>
@@ -47,23 +61,9 @@ Then you can run the executable with a file of your choice:
 ./test_gnl [file]
 ```
 
-Note that stdin is also supported.
-
-### TN_test_GNL
-
-I have created my own test program : [TN_test_GNL](https://github.com/vtennero/TN_test_GNL)
-
-It tests 15 relevant examples of text, with 5 different buff sizes (1, 2, 5, 1,000 and 1,000,000), from files and standard input. For each test, the program also checks memory leaks using the native leaks tool from Mac and valgrind (both only supported on the Macs at 42).
-
-To install it, simply put the content of the TN_test_GNL folder in your get_next_line folder, then do :
-
-```
-sh TN_test_GNL.sh
-```
-
 ## Additional Resources
 
-Instructions : [Subject](http://bit.ly/2Dt5LOS)
+Instructions : [Subject](https://www.dropbox.com/s/dum2raheu2wfes7/get_next_line.en.pdf?dl=0)
 
 My test program : [TN_test_GNL](https://github.com/vtennero/TN_test_GNL)
 
